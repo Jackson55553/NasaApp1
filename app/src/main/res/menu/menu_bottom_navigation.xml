@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/navigation_one"
+            android:title="to first view" />
+        <item
+            android:id="@+id/navigation_second"
+            android:title="to second view" />
+    </group>
+</menu>
