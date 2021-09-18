@@ -81,6 +81,8 @@ class MainFragment : Fragment() {
             is NasaData.Success -> {
                 val serverResponseData = data.serverResponseData
                 val url = serverResponseData.url
+                val title = serverResponseData.title
+                val data = serverResponseData.date
                 if (url.isNullOrEmpty()) {
                     toast("Link is empty")
                 } else {
@@ -91,6 +93,7 @@ class MainFragment : Fragment() {
                         error(R.drawable.ic_load_error_vector)
                         placeholder(R.drawable.ic_no_photo_vector)
                     }
+                    binding.text1.text = "$title $data"
                 }
             }
             is NasaData.Loading -> {
@@ -106,7 +109,7 @@ class MainFragment : Fragment() {
     private fun setBottomAppBar(view: View) {
         val context = activity as MainActivity
         context.setSupportActionBar(view.findViewById(R.id.bottom_app_bar))
-        setHasOptionsMenu(false)
+        setHasOptionsMenu(true)
         binding.fab.setOnClickListener {
             if (isMain) {
                 isMain = false
