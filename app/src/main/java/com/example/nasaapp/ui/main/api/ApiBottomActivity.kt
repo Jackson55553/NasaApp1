@@ -49,7 +49,7 @@ class ApiBottomActivity : AppCompatActivity() {
         bottom_navigation_view.setOnNavigationItemReselectedListener { item ->
             when (item.itemId) {
                 R.id.bottom_view_earth -> {
-                    //Item tapped
+                    badge?.isVisible = false
                 }
                 R.id.bottom_view_mars -> {
                     //Item tapped

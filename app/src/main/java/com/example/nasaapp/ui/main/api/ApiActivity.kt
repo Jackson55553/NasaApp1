@@ -47,17 +47,14 @@ class ApiActivity : AppCompatActivity() {
         tab_layout.getTabAt(WEATHER)?.customView = null
 
         when (position) {
-            EARTH -> {
+            0 -> {
                 setEarthTabHighlighted(layoutInflater)
             }
-            MARS -> {
+            1 -> {
                 setMarsTabHighlighted(layoutInflater)
             }
-            WEATHER -> {
+            2 -> {
                 setWeatherTabHighlighted(layoutInflater)
-            }
-            else -> {
-                setEarthTabHighlighted(layoutInflater)
             }
         }
     }
