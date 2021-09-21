@@ -12,6 +12,8 @@ import androidx.lifecycle.ViewModelProviders
 import coil.api.load
 import com.example.nasaapp.R
 import com.example.nasaapp.databinding.MainFragmentBinding
+import com.example.nasaapp.ui.main.api.ApiActivity
+import com.example.nasaapp.ui.main.api.ApiBottomActivity
 import com.example.nasaapp.ui.main.chips.ChipsFragment
 import com.example.nasaapp.ui.main.menu.BottomNavigationDrawer
 import com.example.nasaapp.ui.main.model.NasaData
@@ -64,7 +66,7 @@ class MainFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.app_bar_fav -> toast("Favourite")
+            R.id.app_bar_fav -> activity?.let { startActivity(Intent(it, ApiBottomActivity::class.java)) }
             R.id.app_bar_settings -> activity?.supportFragmentManager?.beginTransaction()
                 ?.add(R.id.container, ChipsFragment())?.addToBackStack(null)?.commit()
             android.R.id.home -> {
@@ -72,6 +74,7 @@ class MainFragment : Fragment() {
                     BottomNavigationDrawer().show(it.supportFragmentManager, "tag")
                 }
             }
+            R.id.app_bar_api -> activity?.let { startActivity(Intent(it, ApiActivity::class.java)) }
         }
         return super.onOptionsItemSelected(item)
     }
