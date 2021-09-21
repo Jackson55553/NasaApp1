@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.example.nasaapp.R
 import com.example.nasaapp.databinding.FragmentChipsBinding
+import com.example.nasaapp.ui.main.view.MainActivity
+import com.example.nasaapp.ui.main.view.MainFragment
 import com.google.android.material.chip.Chip
 
 
 class ChipsFragment : Fragment() {
-
     private var _binding: FragmentChipsBinding? = null
     private val binding
         get() = _binding!!
@@ -32,7 +34,11 @@ class ChipsFragment : Fragment() {
             }
         }
         binding.chipClose.setOnCloseIconClickListener {
-            Toast.makeText(context, "close is clicked", Toast.LENGTH_SHORT).show()
+            binding.chipClose.visibility = View.GONE
+        }
+        binding.buttonTheme.setOnClickListener {
+            activity?.setTheme(R.style.Theme_NasaApp2)
+            activity?.recreate()
         }
     }
 }

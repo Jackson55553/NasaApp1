@@ -43,7 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/photo_of_the_day_stub"
-                app:layout_constraintBottom_toTopOf="@+id/image_view1"
+                app:layout_constraintBottom_toTopOf="@+id/text1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="parent"
@@ -56,7 +56,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/image_view1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image_view"/>
+                app:layout_constraintTop_toBottomOf="@+id/image_view" />
 
             <com.example.nasaapp.ui.main.util.EquilateralImageView
                 android:id="@+id/image_view1"
@@ -98,9 +98,9 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
+        style="@style/Custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorAccent"
         app:layout_anchor="@id/bottom_app_bar"
         app:srcCompat="@drawable/ic_plus_fab"
         app:tint="#FFFFFF" />
