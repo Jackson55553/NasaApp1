@@ -12,6 +12,8 @@ import androidx.lifecycle.ViewModelProviders
 import coil.api.load
 import com.example.nasaapp.R
 import com.example.nasaapp.databinding.MainFragmentBinding
+import com.example.nasaapp.ui.main.api.ApiActivity
+import com.example.nasaapp.ui.main.api.ApiBottomActivity
 import com.example.nasaapp.ui.main.chips.ChipsFragment
 import com.example.nasaapp.ui.main.menu.BottomNavigationDrawer
 import com.example.nasaapp.ui.main.model.NasaData
@@ -64,7 +66,7 @@ class MainFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.app_bar_fav -> toast("Favourite")
+            R.id.app_bar_fav -> activity?.let { startActivity(Intent(it, ApiBottomActivity::class.java)) }
             R.id.app_bar_settings -> activity?.supportFragmentManager?.beginTransaction()
                 ?.add(R.id.container, ChipsFragment())?.addToBackStack(null)?.commit()
             android.R.id.home -> {
@@ -72,6 +74,7 @@ class MainFragment : Fragment() {
                     BottomNavigationDrawer().show(it.supportFragmentManager, "tag")
                 }
             }
+            R.id.app_bar_api -> activity?.let { startActivity(Intent(it, ApiActivity::class.java)) }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -81,6 +84,8 @@ class MainFragment : Fragment() {
             is NasaData.Success -> {
                 val serverResponseData = data.serverResponseData
                 val url = serverResponseData.url
+                val title = serverResponseData.title
+                val data = serverResponseData.date
                 if (url.isNullOrEmpty()) {
                     toast("Link is empty")
                 } else {
@@ -91,6 +96,7 @@ class MainFragment : Fragment() {
                         error(R.drawable.ic_load_error_vector)
                         placeholder(R.drawable.ic_no_photo_vector)
                     }
+                    binding.text1.text = "$title $data"
                 }
             }
             is NasaData.Loading -> {
@@ -106,7 +112,7 @@ class MainFragment : Fragment() {
     private fun setBottomAppBar(view: View) {
         val context = activity as MainActivity
         context.setSupportActionBar(view.findViewById(R.id.bottom_app_bar))
-        setHasOptionsMenu(false)
+        setHasOptionsMenu(true)
         binding.fab.setOnClickListener {
             if (isMain) {
                 isMain = false
